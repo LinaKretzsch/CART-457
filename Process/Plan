@@ -11,3 +11,8 @@ Technology used:
 - JavaScript for interactivity of website such as drawing part. Will probably use an interactive canvas from a library
 - SQL for database which will hold username, password and drawings the user participated in as well as partial drawings which will be combined to a full drawing once each user is done
 - NodeJS for server interactions so that 3 users can use the application simultaneously
+
+Start of Development: 
+- I started creating the HTML and CSS files in order to get a better idea how I would like to structure the app
+- I decided to use a flexbox in order to structure the elements betters for resizing of the website and to make it compatible for different devices
+- The canvas will have an image background to create the illusion of a folded piece of paper, while the user can only draw on a third of it. The other 2 thirds of the paper will be drawn on by two other users
