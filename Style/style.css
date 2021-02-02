@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #13142f;
+  background-size: contain;
+  overflow: scroll;
+}
+
+.header{
+  padding: 5% 35% 5%;
+  height: 10%;
+}
+
+
+.flex-container{
+  padding-top: 0% 20% 20% 20%;
+  display:flex;
+  flex-direction: inline-flex;
+  flex-wrap: wrap;
+  max-height: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-container canvas, img{
+  max-width: 400px;
+  max-height: auto;
+  object-fit: contain;
+
+}
