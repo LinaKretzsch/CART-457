@@ -1,15 +1,15 @@
 # CART-457
 
-###Application Plan
+### Application Plan
 
 
-#Purpose of Application: 
+# Purpose of Application: 
 
 The application enables 3 users to draw a collaborative sketch together. Each user has to login using their password and email address. When the user signs in they can choose to participate in a collaborative drawing or visit the gallery to see all the drawings they have participated in. Each user does not know the other person they drew the drawing with. 
 
 ---
 
-#Technology used: 
+# Technology used: 
 - HTML and CSS to basic website setup
 - JavaScript for interactivity of website such as drawing part. Will probably use an interactive canvas from a library
 - SQL for database which will hold username, password and drawings the user participated in as well as partial drawings which will be combined to a full drawing once each user is done
