@@ -1,5 +1,3 @@
-# CART-457
-
 ## Application Plan
 
 
