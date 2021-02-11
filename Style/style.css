@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #13142f;
-  background-size: contain;
+  background-color: #363645;
+  /* background-size: contain; */
   overflow: scroll;
 }
 
@@ -12,20 +12,31 @@ body {
 }
 
 
-.flex-container{
-  padding-top: 0% 20% 20% 20%;
-  display:flex;
+.flexContainerOuter{
+  padding-top: 0%;
+  /* padding-bottom: 20%; */
+  display: flex;
   flex-direction: inline-flex;
   flex-wrap: wrap;
-  max-height: auto;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-.flex-container canvas, img{
-  max-width: 400px;
-  max-height: auto;
-  object-fit: contain;
+#canvas1 {
+  background-image: url("/Style/ImgFiles/cnvs1.png");
+}
 
+#canvas2 {
+  background-image: url("/Style/ImgFiles/cnvs2.png");
+}
+
+#canvas3 {
+  background-image: url("/Style/ImgFiles/cnvs1.png");
+}
+
+#canvas1, #canvas2, #canvas3 {
+  display: flex;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
