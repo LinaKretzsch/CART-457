@@ -2,41 +2,37 @@ body {
   margin: 0;
   padding: 0;
   background-color: #363645;
-  /* background-size: contain; */
   overflow: scroll;
 }
 
 .header{
-  padding: 5% 35% 5%;
+  padding-bottom: 10px;
   height: 10%;
 }
 
-
 .flexContainerOuter{
   padding-top: 0%;
-  /* padding-bottom: 20%; */
   display: flex;
-  flex-direction: inline-flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+
 }
 
-#canvas1 {
-  background-image: url("/Style/ImgFiles/cnvs1.png");
+#canvas1, #canvas3 {
+  background-image: url("/Style/ImgFiles/cnvs1and3.png");
 }
 
 #canvas2 {
   background-image: url("/Style/ImgFiles/cnvs2.png");
 }
 
-#canvas3 {
-  background-image: url("/Style/ImgFiles/cnvs1.png");
-}
-
 #canvas1, #canvas2, #canvas3 {
   display: flex;
-  background-size: contain;
-  background-repeat: no-repeat;
+  /* background-size: contain; */
+  background-repeat: round;
+  min-height: 20%;
+  min-width: 20%;
 }
