@@ -134,12 +134,15 @@ window.onload = function()
         document.addEventListener('mousemove', e => {
             cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
         })
+
+
+
         //
-        // document.addEventListener('scroll', () => {
-        //   // cursor.style.borderRadius
-        //   console.log('scroll');
-        //
-        // });
+        document.addEventListener('scroll', () => {
+          // cursor.style.borderRadius
+          console.log('scroll');
+
+        });
 
         // context.onmousedown = function(){
         //   cursor.style.backgroundColor = "grey";
@@ -154,7 +157,7 @@ window.onload = function()
         //mouse moves and clicked and on canvas --> smaller, grey
         //
 
-        document.addEventListener('mousedown', () => {
+        document.addEventListener('click', () => {
             cursor.style.backgroundColor = "grey";
             console.log('down');
 
@@ -169,9 +172,9 @@ window.onload = function()
         //   cursor.style.border = "2px";
         // });
 
-        document.addEventListener('click', () e => {
-            cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-        })
+        // document.addEventListener('click', () e => {
+        //     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+        // })
 
             // setTimeout(() => {
             //     cursor.classList.remove("expand");
