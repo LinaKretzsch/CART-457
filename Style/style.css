@@ -3,21 +3,90 @@ body {
   padding: 0;
   background-color: #363645;
   overflow: scroll;
+  cursor: none;
 }
 
+.cursor {
+    width: 10px;
+    height: 10px;
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: absolute;
+    background-color: none;
+    transition-timing-function: ease-out;
+    /* animation: cursorAnim .5s infinite alternate; */
+    pointer-events: none;
+}
+
+
+/* .cursor::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 8px solid gray;
+    border-radius: 50%;
+    opacity: .5;
+    top: -8px;
+    left: -8px;
+    animation: cursorAnim2 .5s infinite alternate;
+} */
+
+@keyframes cursorAnim {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.7);
+    }
+}
+
+@keyframes cursorAnim2 {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.4);
+    }
+}
+
+@keyframes cursorAnim3 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+
+
+.release{
+    animation: cursorAnim3 .5s forwards;
+    border: 1px solid red;
+}
+
+
 .header{
-  padding-bottom: 10px;
-  height: 10%;
+  padding-bottom: 5%;
 }
 
 .flexContainerOuter{
-  padding-top: 0%;
-  display: flex;
-  flex-wrap: wrap;
+  padding-top: 5%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100%;
+  width: auto;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  resize: none;
+  overflow: auto;
 
 }
 
@@ -27,12 +96,13 @@ body {
 
 #canvas2 {
   background-image: url("/Style/ImgFiles/cnvs2.png");
+
 }
 
 #canvas1, #canvas2, #canvas3 {
-  display: flex;
-  /* background-size: contain; */
+  align-self: center;
   background-repeat: round;
-  min-height: 20%;
-  min-width: 20%;
+  flex-basis: 25%;
+  width: 500px;
+  height: auto;
 }
