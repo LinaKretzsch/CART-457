@@ -2,17 +2,19 @@ body {
   margin: 0;
   padding: 0;
   background-color: #363645;
-  overflow: scroll;
+  overflow:visible;
   cursor: none;
 }
 
 .cursor {
     width: 10px;
     height: 10px;
+    top: 8px;
+    left: 8px;
     border: 1px solid grey;
     border-radius: 50%;
     position: absolute;
-    background-color: none;
+    /* background-color: none; */
     transition-timing-function: ease-out;
     /* animation: cursorAnim .5s infinite alternate; */
     pointer-events: none;

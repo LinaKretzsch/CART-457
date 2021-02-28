@@ -131,10 +131,35 @@ window.onload = function()
 
       const cursor = document.querySelector('.cursor');
 
-        document.addEventListener('mousemove', e => {
-            cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+
+
+        // cursor.setAttribute("style", "top: "+(context.posY - 5)+"px; left: "+(context.posX - 5)+"px;")
+
+
+
+
+        // document.addEventListener('mousemove', e => {
+        //   cursor.style.top = e.pageY - 5+"px";
+        //   cursor.style.left = e.pageX - 5+"px";
+        //
+        //     // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+        // })
+
+        window.addEventListener('mousemove', e => {
+          cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+          cursor.style.backgroundColor = "none";
+
+            // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
         })
 
+        window.addEventListener('mouseup touchend', e => {
+          // document.removeEventListener('mousemove', e);
+          // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+          cursor.style.backgroundColor = "grey";
+
+          console.log('set grey');
+            // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+        })
 
 
         //
@@ -156,15 +181,15 @@ window.onload = function()
         //mouse moves and not clicked --> grey outline
         //mouse moves and clicked and on canvas --> smaller, grey
         //
-
-        document.addEventListener('click', () => {
-            cursor.style.backgroundColor = "grey";
-            console.log('down');
-
-            // setTimeout(() => {
-            //     cursor.classList.remove("expand");
-            // }, 500)
-        });
+        //
+        // document.addEventListener('click', () => {
+        //     cursor.style.backgroundColor = "grey";
+        //     console.log('down');
+        //
+        //     // setTimeout(() => {
+        //     //     cursor.classList.remove("expand");
+        //     // }, 500)
+        // });
 
 
         // document.addEventListener('onmouseup', () => {
@@ -173,7 +198,7 @@ window.onload = function()
         // });
 
         // document.addEventListener('click', () e => {
-        //     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+        //     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;");
         // })
 
             // setTimeout(() => {
