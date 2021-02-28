@@ -14,7 +14,7 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 - NodeJS for server interactions so that 3 users can use the application simultaneously
 
 ---
-### Development
+### Component Development
 
 |Component |Strategy |                                                                                                      
 |----------|:--------|
@@ -22,11 +22,11 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 | JavaScript: Canvas | I decided to use a flexbox in order to structure the elements betters for resizing of the website and to make it compatible for different devices|
 ||The canvas will have an image background to create the illusion of a folded piece of paper, while the user can only draw on a third of it. The other 2 thirds of the paper will be drawn on by two other users. |
 || I want to use the JS library Konva in order to implement the canvas drawing feature https://konvajs.org/docs/index.html.|
-
+| JavaScript: Cursor| I used a library and copied some code to have a more stialized cursor. The cursor is now an ellipse and will change the radius if the brush radius is increased or decreased on scroll https://codepen.io/designcourse/pen/GzJKOE |
 
 ---
 
-### Design/Layout
+### Overall Design/Layout
 
 |Component |Purpose | Style|  
 |----------|:--------|:--------|
@@ -34,8 +34,10 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 |Drawing/Main Page| White image in the background of canvas resembling a paper folded in three parts. Each user can be drawn on by a different user. | Simplistic style, not confusing and easy to nativate.|
 || There are 3 drawing tools, a pencil, an eraser and a revert option. The pencil and eraser radius is indicated when the cursor is on the canvas. The size can be altered by scrolling in and out| The tools are depicted as an outline for each tool. The current active tools is indicated by the icons outline glowing| 
 |Account Page| The login/log out option can also be accessed from a burger menu in the upper right corner. The user can also see a gallery of drawing they participated in in the accounts section.||
-
+|Gallery Page| Will show a gallery of finished images| The gallery will hold the images creates by different users. The user can decide to filder by images they participated or see all images|
 
 ---
 
 Issues Encountered:
+
+
