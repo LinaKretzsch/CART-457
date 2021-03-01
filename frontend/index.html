@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Style/style.css">
+</head>
+
+<body>
+  <div class="cursor"></div>
+
+  <div href="/" class="indexDiv" data-link>
+  </div>
+
+  <div href="/drawingScript" class="drawingDiv" data-link>
+    <div class="header">
+      <h1>SketchQuisite</h1>
+    </div>
+    <!-- Canvas 1 div containing tools and canvas -->
+    <div id="canvas1">
+      <!-- <div id="t1"> for tools
+      </div> -->
+    </div>
+
+    <!-- Canvas 2 div containing tools and canvas -->
+    <div id="canvas2">
+      <canvas id="c2">
+      </canvas>
+      <!-- <div id="t2"> for tools
+      </div> -->
+    </div>
+
+    <!-- Canvas 3 div containing tools and canvas -->
+    <div id="canvas3">
+      <canvas id="c3">
+        </cavas>
+        <!-- <div id="t3"> for tools
+      </div> -->
+    </div>
+  </div>
+
+  <div href="/accountScript" class="accountDiv" data-link>
+  </div>
+
+  <div href="/galleryScript" class="galleryDiv" data-link>
+  </div>
+
+
+  <!-- <script src="JS/mainScript.js"></script> -->
+  <script src="https://unpkg.com/konva@4.0.15/konva.min.js"></script>
+
+  <script type="module" src="JS/accountScript.js"></script>
+  <script type="module" src="/JS/galleryScript.js"></script>
+  <script type="module" src="JS/drawingScript.js"></script>
+  <script type="module" src="/JS/index.js"></script>
+
+
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/kursor@0.0.14/dist/kursor.js"></script> -->
+
+</body>
+
+</html>

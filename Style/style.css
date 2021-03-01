@@ -78,7 +78,7 @@ body {
   padding-bottom: 5%;
 }
 
-.flexContainerOuter{
+.drawingDiv{
   padding-top: 5%;
   flex-direction: column;
   height: 100%;
