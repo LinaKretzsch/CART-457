@@ -9,10 +9,17 @@
 <body>
   <div class="cursor"></div>
 
-  <div href="/" class="indexDiv" data-link>
+  <div href="/account" class="accountDiv" data-link>
   </div>
 
-  <div href="/drawingScript" class="drawingDiv" data-link>
+  <div href="/" class="indexDiv" data-link>
+    <a href="/account" class="accountDiv" data-link>Account</a>
+    <a href="/drawing" class="drawingDiv" data-link>Drawing</a>
+    <a href="/gallery" class="galleryDiv" data-link>Gallery</a>
+
+  </div>
+
+  <div href="/drawing" class="drawingDiv" data-link>
     <div class="header">
       <h1>SketchQuisite</h1>
     </div>
@@ -39,20 +46,17 @@
     </div>
   </div>
 
-  <div href="/accountScript" class="accountDiv" data-link>
-  </div>
-
-  <div href="/galleryScript" class="galleryDiv" data-link>
+  <div href="/gallery" class="galleryDiv" data-link>
   </div>
 
 
   <!-- <script src="JS/mainScript.js"></script> -->
-  <script src="https://unpkg.com/konva@4.0.15/konva.min.js"></script>
+  <!-- <script src="https://unpkg.com/konva@4.0.15/konva.min.js"></script>
 
-  <script type="module" src="JS/accountScript.js"></script>
+  <script type="module" src="/JS/accountScript.js"></script>
   <script type="module" src="/JS/galleryScript.js"></script>
-  <script type="module" src="JS/drawingScript.js"></script>
-  <script type="module" src="/JS/index.js"></script>
+  <script type="module" src="/JS/drawingScript.js"></script> -->
+  <script type="module" src="/static/index.js"></script>
 
 
 
