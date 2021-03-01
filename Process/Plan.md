@@ -39,5 +39,6 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 ---
 
 Issues Encountered:
-
+1. Currently canvas is larger than white div background. Will have to edit this
+2. Cursor is currenly not showing the desired effect when pressed. I would the cursor radius to get smaller upon click
 
