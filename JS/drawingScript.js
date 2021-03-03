@@ -133,6 +133,7 @@ window.onload = function()
 
 
 
+
         // cursor.setAttribute("style", "top: "+(context.posY - 5)+"px; left: "+(context.posX - 5)+"px;")
 
 

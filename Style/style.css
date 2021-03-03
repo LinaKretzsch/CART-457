@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Saira+Condensed:wght@100&display=swap');
 body {
   margin: 0;
   padding: 0;
   background-color: #363645;
   overflow:visible;
-  cursor: none;
+  font-family: 'Roboto', sans-serif;
+  color: white;
 }
 
 .cursor {
@@ -66,19 +68,17 @@ body {
 }
 
 
-
-
-.release{
+.release {
     animation: cursorAnim3 .5s forwards;
     border: 1px solid red;
 }
 
 
-.header{
+.header {
   padding-bottom: 5%;
 }
 
-.drawingDiv{
+.drawingDiv {
   padding-top: 5%;
   flex-direction: column;
   height: 100%;
@@ -89,8 +89,47 @@ body {
   flex-wrap: nowrap;
   resize: none;
   overflow: auto;
-
+  cursor: none;
 }
+
+a.sitelinks{
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.glow {
+  text-align: center;
+  text-shadow: 0 0 20px #99FFFF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF;
+}
+
+a, p {
+  font-size: 20px;
+}
+
+a.sitelinks:hover {
+  text-shadow: 0 0 20px #99FFFF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF;
+}
+
+.contentDiv {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+/* @-webkit-keyframes  glow{
+  from {
+    text-shadow: 0 0 10px #99FFFF, 0 0 20px #99FFFF, 0 0 30px #00D7E6, 0 0 40px #00D7E6, 0 0 50px #00D7E6, 0 0 60px #00D7E6, 0 0 70px #00D7E6;
+  }
+
+  to {
+    text-shadow: 0 0 20px #99FFFF, 0 0 30px #5FE5FF, 0 0 40px #5FE5FF, 0 0 50px #5FE5FF, 0 0 60px #5FE5FF, 0 0 70px #5FE5FF, 0 0 80px #5FE5FF;
+  }
+} */
+
 
 #canvas1, #canvas3 {
   background-image: url("/Style/ImgFiles/cnvs1and3.png");

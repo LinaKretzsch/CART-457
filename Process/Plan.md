@@ -1,13 +1,13 @@
 ## Application Plan
 
 
-### Purpose of Application 
+### Purpose of Application
 
-The application enables 3 users to draw a collaborative sketch together. Each user has to login using their password and email address. When the user signs in they can choose to participate in a collaborative drawing or visit the gallery to see all the drawings they have participated in. Each user does not know the other person they drew the drawing with. 
+The application enables 3 users to draw a collaborative sketch together. Each user has to login using their password and email address. When the user signs in they can choose to participate in a collaborative drawing or visit the gallery to see all the drawings they have participated in. Each user does not know the other person they drew the drawing with.
 
 ---
 
-### Technology used 
+### Technology used
 - HTML and CSS to basic website setup
 - JavaScript for interactivity of website such as drawing part. Will probably use an interactive canvas from a library
 - SQL for database which will hold username, password and drawings the user participated in as well as partial drawings which will be combined to a full drawing once each user is done
@@ -31,14 +31,14 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 |Component |Purpose | Style|  
 |----------|:--------|:--------|
 |Start Page| Asks user to login to their account with username and password. Once the user is logged in, they are asked to either navigate to their account, open the gallery or participate in a drawing.| Minimal Design, simple and not confusing|
-|Drawing/Main Page| White image in the background of canvas resembling a paper folded in three parts. Each user can be drawn on by a different user. | Simplistic style, not confusing and easy to nativate.|
-|| There are 3 drawing tools, a pencil, an eraser and a revert option. The pencil and eraser radius is indicated when the cursor is on the canvas. The size can be altered by scrolling in and out| The tools are depicted as an outline for each tool. The current active tools is indicated by the icons outline glowing| 
+|Drawing/Main Page| White image in the background of canvas resembling a paper folded in three parts. Each user can be drawn on by a different user. | Simplistic style, not confusing and easy to navigate.|
+|| There are 3 drawing tools, a pencil, an eraser and a revert option. The pencil and eraser radius is indicated when the cursor is on the canvas. The size can be altered by scrolling in and out| The tools are depicted as an outline for each tool. The current active tools is indicated by the icons outline glowing|
 |Account Page| The login/log out option can also be accessed from a burger menu in the upper right corner. The user can also see a gallery of drawing they participated in in the accounts section.||
-|Gallery Page| Will show a gallery of finished images| The gallery will hold the images creates by different users. The user can decide to filder by images they participated or see all images|
+|Gallery Page| Will show a gallery of finished images| The gallery will hold the images creates by different users. The user can decide to folder by images they participated or see all images|
 
 ---
 
 Issues Encountered:
 1. Currently canvas is larger than white div background. Will have to edit this
-2. Cursor is currenly not showing the desired effect when pressed. I would the cursor radius to get smaller upon click
-
+2. Cursor is currently not showing the desired effect when pressed. I would the cursor radius to get smaller upon click
+3. Followed a tutorial in order to change application into single page application using node and express. Since this was all new to me I had difficulties to restore the previous state of my project and hence decided to revert the changes and move on due to a strict timeline. I might attempt to restructure the files once I have everything implemented by creating a new branch and safely try using express. I would have preferred to structure this application as a SPA to learn but since I would like to get this project completed I will move on for now.
