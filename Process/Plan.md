@@ -41,5 +41,4 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 Issues Encountered:
 1. Currently canvas is larger than white div background. Will have to edit this
 2. Cursor is currenly not showing the desired effect when pressed. I would the cursor radius to get smaller upon click
-3. I was getting an issue while trying to host the application on server using node, I had to set the port from 5060 to 5000 to get it to work since this is an issue with Chrome. After some research online I found out that localhost: 5060 has been added to a list by Chrome. 
 
