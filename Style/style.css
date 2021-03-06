@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Saira+Condensed:wght@100&display=swap');
+
+
 body {
   margin: 0;
   padding: 0;
@@ -19,6 +21,7 @@ body {
     transition-timing-function: ease-out;
     /* animation: cursorAnim .5s infinite alternate; */
     pointer-events: none;
+    z-index: 3;
 }
 
 p {
@@ -77,8 +80,10 @@ p {
 }
 
 
-.header {
-  padding-bottom: 5%;
+h1 {
+ text-align: center;
+ padding: 5% 0% 5% 0%;
+ -webkit-font-smoothing: antialiased;
 }
 
 .glow {
@@ -87,8 +92,18 @@ p {
   text-shadow: 0 0 5px #b0f1ff;
 }
 
+.outerFlex {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  resize: none;
+  z-index: 2;
+}
+
 .drawingDiv {
-  padding-top: 5%;
+  position: absolute;
   flex-direction: column;
   height: 100%;
   width: auto;
@@ -97,8 +112,26 @@ p {
   display: flex;
   flex-wrap: nowrap;
   resize: none;
-  overflow: auto;
+  overflow: none;
   cursor: none;
+  z-index: 2;
+  flex: 0 1 auto;
+}
+
+.toolDiv {
+  flex-direction: column;
+  height: 100%;
+  width: auto;
+  min-width: inherit;
+  align-items: left;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: none;
+  cursor: none;
+  z-index: 1;
+  flex: 0 2 auto;
+  resize: none;
+  padding-left: 600px;
 }
 
 .contentDiv {
@@ -111,8 +144,7 @@ p {
 
 
 #canvas1, #canvas3 {
-  /* background-image: url("/Style/ImgFiles/cnvs1and3.png"); */
-  display: flex;
+  background-image: url("/Style/ImgFiles/cnvs1and3.png");
 }
 
 #canvas2 {
@@ -120,6 +152,7 @@ p {
 }
 
 #canvas1, #canvas2, #canvas3 {
+  display: flex;
   align-self: center;
   background-repeat: round;
   flex-basis: 25%;
@@ -148,7 +181,7 @@ a::before {
   width: 100%;
   height: 100%;
   background: none;
-  transition: .5s;
+  transition: 0.5s;
   z-index: -1;
 }
 
@@ -157,11 +190,26 @@ a:hover {
   text-shadow: 0 0 5px #ffee10;
 }
 
-.tools {
-  display: flex;
-  flex-direction: column;
+
+
+button.pencil {
+  background-image: url("/Style/ImgFiles/pencilIcon1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 150px;
+  background-color: transparent;
+  border: none;
+  opacity: 50%;
+  -webkit-filter: sepia(1.0) invert(.5) brightness(1.5);
+  transition: 0.5s;
 }
 
-.pencil {
-  background-image: url("/Style/ImgFiles/eraserIcon.png");
+
+button.pencil:hover{
+  text-shadow: 0 0 20px #ffee10;
+  opacity: 100%;
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
+  /* this line of code fixes flickering due to the web browser and web filters  */
+  -webkit-transform:translate3d(5px,0,0);
 }

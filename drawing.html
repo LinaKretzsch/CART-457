@@ -8,43 +8,29 @@
 
 <body>
   <div class="cursor"></div>
+  <h1 class="glow">SketchQuisite</h1>
+  <div class="OuterFlex">
+    <div class="drawingDiv">
+      <!-- Canvas 1 div containing tools and canvas -->
+      <div id="canvas1">
+      </div>
 
-  <div class="drawingDiv" >
-    <div class="header">
-      <h1 class="glow">SketchQuisite</h1>
-    </div>
-    <!-- Canvas 1 div containing tools and canvas -->
-    <div id="canvas1">
-      <div class="tools">
+      <!-- Canvas 2 div containing tools and canvas -->
+      <div id="canvas2">
+      </div>
 
-          <i class="pencil"></i>
-        
-        <button class="btn">
-          <i class="eraser"></i>
-        </button>
-        <button class="btn">
-          <i class="reverse"></i>
-        </button>
+      <!-- Canvas 3 div containing tools and canvas -->
+      <div id="canvas3">
       </div>
     </div>
 
-    <!-- Canvas 2 div containing tools and canvas -->
-    <div id="canvas2">
-      <canvas id="c2">
-      </canvas>
-      <!-- <div id="t2"> for tools
-      </div> -->
+    <div class="toolDiv">
+    <div id="tools1">
+      <button value="pencil" class="pencil">
+      </button>
     </div>
-
-    <!-- Canvas 3 div containing tools and canvas -->
-    <div id="canvas3">
-      <canvas id="c3">
-        </canvas>
-        <!-- <div id="t3"> for tools
-      </div> -->
     </div>
   </div>
-
 
 
   <script src="https://unpkg.com/konva@4.0.15/konva.min.js"></script>
