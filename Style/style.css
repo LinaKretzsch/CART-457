@@ -5,7 +5,6 @@ body {
   background-color: #363645;
   overflow:visible;
   font-family: 'Roboto', sans-serif;
-  color: white;
 }
 
 .cursor {
@@ -22,6 +21,10 @@ body {
     pointer-events: none;
 }
 
+p {
+  color: #849ca1;
+  font-size: 20px;
+}
 
 /* .cursor::after {
     content: "";
@@ -78,6 +81,12 @@ body {
   padding-bottom: 5%;
 }
 
+.glow {
+  color: #b0f1ff;
+  box-shadow: 0 0 0 #b0f1ff;
+  text-shadow: 0 0 5px #b0f1ff;
+}
+
 .drawingDiv {
   padding-top: 5%;
   flex-direction: column;
@@ -92,26 +101,6 @@ body {
   cursor: none;
 }
 
-a.sitelinks{
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  padding: 10px;
-}
-
-.glow {
-  text-align: center;
-  text-shadow: 0 0 20px #99FFFF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF;
-}
-
-a, p {
-  font-size: 20px;
-}
-
-a.sitelinks:hover {
-  text-shadow: 0 0 20px #99FFFF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF, 0 0 0px #5FE5FF;
-}
-
 .contentDiv {
   justify-content: center;
   align-items: center;
@@ -120,24 +109,14 @@ a.sitelinks:hover {
   flex-direction: column;
 }
 
-/* @-webkit-keyframes  glow{
-  from {
-    text-shadow: 0 0 10px #99FFFF, 0 0 20px #99FFFF, 0 0 30px #00D7E6, 0 0 40px #00D7E6, 0 0 50px #00D7E6, 0 0 60px #00D7E6, 0 0 70px #00D7E6;
-  }
-
-  to {
-    text-shadow: 0 0 20px #99FFFF, 0 0 30px #5FE5FF, 0 0 40px #5FE5FF, 0 0 50px #5FE5FF, 0 0 60px #5FE5FF, 0 0 70px #5FE5FF, 0 0 80px #5FE5FF;
-  }
-} */
-
 
 #canvas1, #canvas3 {
-  background-image: url("/Style/ImgFiles/cnvs1and3.png");
+  /* background-image: url("/Style/ImgFiles/cnvs1and3.png"); */
+  display: flex;
 }
 
 #canvas2 {
   background-image: url("/Style/ImgFiles/cnvs2.png");
-
 }
 
 #canvas1, #canvas2, #canvas3 {
@@ -146,4 +125,43 @@ a.sitelinks:hover {
   flex-basis: 25%;
   width: 500px;
   height: auto;
+}
+
+
+a {
+  padding: 10px;
+  text-decoration: none;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 63px;
+  background: none;
+  font-size: 20px;
+  color: #b0f1ff;
+  transition: .5s;
+}
+
+a::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  transition: .5s;
+  z-index: -1;
+}
+
+a:hover {
+  color: #fffde0;
+  text-shadow: 0 0 5px #ffee10;
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+}
+
+.pencil {
+  background-image: url("/Style/ImgFiles/eraserIcon.png");
 }
