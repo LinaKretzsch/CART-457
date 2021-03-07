@@ -51,6 +51,7 @@ window.onload = function()
     var mode = 'pencil';
     var radius = 1.5;
 
+    selectedTool(pencil, true);
 
     var context = canvas.getContext('2d');
 
@@ -107,15 +108,16 @@ window.onload = function()
       var eraser = document.getElementById("eraser");
 
       pencil.addEventListener("click", () => {
-        mode = 'pencil';
         selectedTool(eraser, false);
+        mode = 'pencil';
         selectedTool(pencil, true);
       })
 
       eraser.addEventListener("click", () => {
+        selectedTool(pencil, false);
         mode = 'eraser';
         selectedTool(eraser, true);
-        selectedTool(pencil, false);
+
       })
 
       context.beginPath();
@@ -159,7 +161,7 @@ window.onload = function()
         })
 
         //
-        document.addEventListener('scroll', () => {
+        canvas.addEventListener('scroll', () => {
           // cursor.style.borderRadius
           console.log('scroll');
 
