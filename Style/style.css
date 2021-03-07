@@ -129,6 +129,7 @@ h1 {
   width: 150px;
   /* flex: 0 2 auto; */
   resize: none;
+  -webkit-transform:translate3D(0 50 40);
   padding-left: 600px;
   z-index: 1;
 }
@@ -173,7 +174,7 @@ a {
   transition: .5s;
 }
 
-a::before {
+a::before, button.submit:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -184,25 +185,27 @@ a::before {
   z-index: -1;
 }
 
-a:hover {
+a:hover, button.submit:hover {
+  -webkit-transform:translate3d(0,0,0);
   color: #fffde0;
   text-shadow: 0 0 5px #ffee10;
+  /* box-shadow: 0 0 1px #ffee10; */
 }
 
-button {
+button.pencil, button.eraser, button.reverse {
+  border: none;
   background-size: contain;
   background-repeat: no-repeat;
   height: 40px;
   width: 150px;
   background-color: transparent;
-  border: none;
   opacity: 50%;
   -webkit-filter: sepia(1.0) invert(.5) brightness(1.5);
   transition: 0.5s;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
-button:hover{
+button.pencil:hover, button.eraser:hover{
   text-shadow: 0 0 20px #ffee10;
   opacity: 100%;
   -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
@@ -210,8 +213,20 @@ button:hover{
   -webkit-transform:translate3d(5px,0,0);
 }
 
-button:hover:active {
+button.reverse:hover {
   text-shadow: 0 0 20px #ffee10;
+  opacity: 100%;
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
+}
+
+button.submit:hover {
+  text-shadow: 0 0 20px #ffee10;
+  opacity: 100%;
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
+}
+
+button.pencil:focus, button.eraser:focus, button.reverse:focus, button.submit:focus {
+  outline: none;
   opacity: 100%;
   -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
 }
@@ -224,6 +239,18 @@ button.eraser {
   background-image: url("/Style/ImgFiles/eraserIcon1.png");
 }
 
-button.reverse{
+button.reverse {
   background-image: url("/Style/ImgFiles/reverseIcon.png");
+}
+
+button.submit {
+  background-color: grey;
+  color: none;
+  border-radius: 3px;
+  border-width: thin;
+  width: 70px;
+  height: 30px;
+  margin-left: 32px;
+  border-style: none;
+  transition: 0.5s;
 }

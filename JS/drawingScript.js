@@ -48,7 +48,7 @@ window.onload = function()
     var color = '#00000';
     var isPaint = false;
     var lastPointerPosition;
-    var mode = 'brush';
+    var mode = 'pencil';
     var radius = 1.5;
 
 
@@ -58,12 +58,6 @@ window.onload = function()
     context.strokeStyle = color;
     context.lineJoin = 'round';
     context.lineWidth = radius;
-
-    // Change cursor appearance once mouse is over canvas
-    // document.getElementById(theCanvas).style.cursor = function()
-    // {
-    //
-    // }
 
 
     // now we need to bind some events
@@ -100,13 +94,29 @@ window.onload = function()
 
       // context.globalCompositeOperation = 'source-over';
 
-// Disabled tools for now
-      // if (mode === 'brush') {
-      //   context.globalCompositeOperation = 'source-over';
-      // }
-      // if (mode === 'eraser') {
-      //   context.globalCompositeOperation = 'destination-out';
-      // }
+      if (mode === 'pencil') {
+        context.globalCompositeOperation = 'source-over';
+        console.log("mode is pencil");
+      }
+      if (mode === 'eraser') {
+        context.globalCompositeOperation = 'destination-out';
+        console.log("mode is eraser");
+      }
+
+      var pencil = document.getElementById("pencil");
+      var eraser = document.getElementById("eraser");
+
+      pencil.addEventListener("click", () => {
+        mode = 'pencil';
+        selectedTool(eraser, false);
+        selectedTool(pencil, true);
+      })
+
+      eraser.addEventListener("click", () => {
+        mode = 'eraser';
+        selectedTool(eraser, true);
+        selectedTool(pencil, false);
+      })
 
       context.beginPath();
 
@@ -132,20 +142,6 @@ window.onload = function()
       const cursor = document.querySelector('.cursor');
 
 
-
-
-        // cursor.setAttribute("style", "top: "+(context.posY - 5)+"px; left: "+(context.posX - 5)+"px;")
-
-
-
-
-        // document.addEventListener('mousemove', e => {
-        //   cursor.style.top = e.pageY - 5+"px";
-        //   cursor.style.left = e.pageX - 5+"px";
-        //
-        //     // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-        // })
-
         window.addEventListener('mousemove', e => {
           cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
           cursor.style.backgroundColor = "none";
@@ -161,7 +157,6 @@ window.onload = function()
           console.log('set grey');
             // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
         })
-
 
         //
         document.addEventListener('scroll', () => {
@@ -211,6 +206,19 @@ window.onload = function()
 
   } // CANVAS FUNCTION END
 
+  function selectedTool(tool, state) {
+    if(state === true) {
+      tool.style.border = "none";
+      tool.style.opacity = "100%";
+      tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
+    }
+    else {
+      tool.style.border = "none";
+      tool.style.opacity = "50%";
+      tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
+    }
+
+  }
 
 
 
