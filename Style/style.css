@@ -10,10 +10,10 @@ body {
 }
 
 .cursor {
-    width: 10px;
-    height: 10px;
-    top: 8px;
-    left: 8px;
+    width: 5px;
+    height: 5px;
+    top: 5px;
+    left: 5px;
     border: 1px solid grey;
     border-radius: 50%;
     position: absolute;
@@ -80,7 +80,7 @@ p {
 
 h1 {
  text-align: center;
- padding: 5% 0% 5% 0%;
+ padding: 50px 0% 50px 0%;
  -webkit-font-smoothing: antialiased;
 }
 
@@ -103,7 +103,7 @@ h1 {
 .drawingDiv {
   position: absolute;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   width: auto;
   justify-content: flex-start;
   align-items: center;
@@ -207,10 +207,9 @@ button.pencil, button.eraser, button.reverse {
 
 button.pencil:hover, button.eraser:hover{
   text-shadow: 0 0 20px #ffee10;
-  opacity: 100%;
-  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff);
-  /* this line of code fixes flickering due to the web browser and web filters  */
-  -webkit-transform:translate3d(5px,0,0);
+  opacity: 100% !important;   /* adding important so this attribute wont be overwritten in JS */
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff) !important;
+  -webkit-transform:translate3d(5px,0,0);   /* this line of code fixes flickering due to the web browser and web filters  */
 }
 
 button.reverse:hover {

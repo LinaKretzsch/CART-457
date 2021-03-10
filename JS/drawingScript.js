@@ -108,16 +108,15 @@ window.onload = function()
       var eraser = document.getElementById("eraser");
 
       pencil.addEventListener("click", () => {
-        selectedTool(eraser, false);
         mode = 'pencil';
         selectedTool(pencil, true);
+        selectedTool(eraser, false);
       })
 
       eraser.addEventListener("click", () => {
-        selectedTool(pencil, false);
         mode = 'eraser';
         selectedTool(eraser, true);
-
+        selectedTool(pencil, false);
       })
 
       context.beginPath();
@@ -143,28 +142,37 @@ window.onload = function()
 
       const cursor = document.querySelector('.cursor');
 
-
         window.addEventListener('mousemove', e => {
-          cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+          // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+          cursor.style.top = (e.pageY - context.lineWidth-1) +"px";
+          cursor.style.left = (e.pageX - context.lineWidth-1) +"px";
           cursor.style.backgroundColor = "none";
-
             // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
         })
 
         window.addEventListener('mouseup touchend', e => {
-          // document.removeEventListener('mousemove', e);
-          // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
           cursor.style.backgroundColor = "grey";
 
           console.log('set grey');
             // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
         })
 
-        //
-        canvas.addEventListener('scroll', () => {
-          // cursor.style.borderRadius
-          console.log('scroll');
-
+        //Increase and decrease pencil and eraser radius on scroll
+        document.addEventListener("wheel", function (e) {
+          if(e.deltaY < 0){
+            if(context.lineWidth !== 0){
+              context.lineWidth -= 0.2;
+              cursor.style.width = context.lineWidth+2.5;
+              cursor.style.height = context.lineWidth+2.5;
+            }
+          }
+          else if(e.deltaY > 0){
+            if(context.lineWidth < 20){
+              context.lineWidth += 0.2;
+              cursor.style.width = context.lineWidth+2.5;
+              cursor.style.height = context.lineWidth+2.5;
+            }
+          }
         });
 
         // context.onmousedown = function(){
@@ -214,7 +222,8 @@ window.onload = function()
       tool.style.opacity = "100%";
       tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
     }
-    else {
+
+    else if(state === false) {
       tool.style.border = "none";
       tool.style.opacity = "50%";
       tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
