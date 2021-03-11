@@ -3,8 +3,7 @@
 
 
 
-window.onload = function()
-{
+window.onload = function() {
   console.log('Script loaded');
 
   let cvs1 = CustomCanvas('canvas1');
@@ -64,44 +63,38 @@ window.onload = function()
     // now we need to bind some events
     // we need to start drawing on mousedown
     // and stop drawing on mouseup
-    image.on('mousedown touchstart', function()
-    {
+    image.on('mousedown touchstart', function() {
       isPaint = true;
       lastPointerPosition = stage.getPointerPosition();
 
 
       // Stop drawing if cursor is leaves canvas to avoid jagged line
       // when cursor returns to canvas
-      window.addEventListener ("mouseout", function()
-      {
+      window.addEventListener("mouseout", function() {
         isPaint = false;
 
       });
     });
 
     // will it be better to listen move/end events on the window?
-    stage.on('mouseup touchend', function()
-    {
+    stage.on('mouseup touchend', function() {
       isPaint = false;
 
     });
 
     // and core function - drawing
-    stage.on('mousemove touchmove', function()
-    {
+    stage.on('mousemove touchmove', function() {
       if (!isPaint) {
         return;
-    }
+      }
 
       // context.globalCompositeOperation = 'source-over';
 
       if (mode === 'pencil') {
         context.globalCompositeOperation = 'source-over';
-        console.log("mode is pencil");
       }
       if (mode === 'eraser') {
         context.globalCompositeOperation = 'destination-out';
-        console.log("mode is eraser");
       }
 
       var pencil = document.getElementById("pencil");
@@ -109,12 +102,14 @@ window.onload = function()
 
       pencil.addEventListener("click", () => {
         mode = 'pencil';
+        cursor.style.borderRadius = '50%';
         selectedTool(pencil, true);
         selectedTool(eraser, false);
       })
 
       eraser.addEventListener("click", () => {
         mode = 'eraser';
+        cursor.style.borderRadius = '10%';
         selectedTool(eraser, true);
         selectedTool(pencil, false);
       })
@@ -140,96 +135,98 @@ window.onload = function()
 
 
 
-      const cursor = document.querySelector('.cursor');
+    const cursor = document.querySelector('.cursor');
 
-        window.addEventListener('mousemove', e => {
-          // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-          cursor.style.top = (e.pageY - context.lineWidth-1) +"px";
-          cursor.style.left = (e.pageX - context.lineWidth-1) +"px";
-          cursor.style.backgroundColor = "none";
-            // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-        })
+    window.addEventListener('mousemove', e => {
+      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+      cursor.style.top = (e.pageY - context.lineWidth - 1) + "px";
+      cursor.style.left = (e.pageX - context.lineWidth - 1) + "px";
+      cursor.style.backgroundColor = "none";
+      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+    })
 
-        window.addEventListener('mouseup touchend', e => {
-          cursor.style.backgroundColor = "grey";
+    window.addEventListener('mouseup touchend', e => {
+      cursor.style.backgroundColor = "grey";
 
-          console.log('set grey');
-            // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-        })
+      console.log('set grey');
+      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+    })
 
-        //Increase and decrease pencil and eraser radius on scroll
-        document.addEventListener("wheel", function (e) {
-          if(e.deltaY < 0){
-            if(context.lineWidth !== 0){
-              context.lineWidth -= 0.2;
-              cursor.style.width = context.lineWidth+2.5;
-              cursor.style.height = context.lineWidth+2.5;
-            }
-          }
-          else if(e.deltaY > 0){
-            if(context.lineWidth < 20){
-              context.lineWidth += 0.2;
-              cursor.style.width = context.lineWidth+2.5;
-              cursor.style.height = context.lineWidth+2.5;
-            }
-          }
-        });
-
-        // context.onmousedown = function(){
-        //   cursor.style.backgroundColor = "grey";
-        //   console.log("EYO");
-        // }
-
-        // document.addEventListener('mousedown', () => {
-        //   cursor.style.backgroundColor = "grey";
-        // });
-
-        //mouse moves and not clicked --> grey outline
-        //mouse moves and clicked and on canvas --> smaller, grey
-        //
-        //
-        // document.addEventListener('click', () => {
-        //     cursor.style.backgroundColor = "grey";
-        //     console.log('down');
-        //
-        //     // setTimeout(() => {
-        //     //     cursor.classList.remove("expand");
-        //     // }, 500)
-        // });
-
-
-        // document.addEventListener('onmouseup', () => {
-        //   cursor.style.backgroundColor = "none";
-        //   cursor.style.border = "2px";
-        // });
-
-        // document.addEventListener('click', () e => {
-        //     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;");
-        // })
-
-            // setTimeout(() => {
-            //     cursor.classList.remove("expand");
-            // }, 500)
+    //Increase and decrease pencil and eraser radius on scroll
+    document.addEventListener("wheel", function(e)
+    {
+      if (e.deltaY < 0)
+      {
+        if (context.lineWidth !== 0)
+        {
+          context.lineWidth -= 0.2;
+          cursor.style.width = context.lineWidth + 2.5;
+          cursor.style.height = context.lineWidth + 2.5;
+        }
+      } else if (e.deltaY > 0) {
+        if (context.lineWidth < 20) {
+          context.lineWidth += 0.2;
+          cursor.style.width = context.lineWidth + 2.5;
+          cursor.style.height = context.lineWidth + 2.5;
+        }
+      }
+    });
 
 
 
+// context.onmousedown = function(){
+//   cursor.style.backgroundColor = "grey";
+//   console.log("EYO");
+// }
 
-  } // CANVAS FUNCTION END
+// document.addEventListener('mousedown', () => {
+//   cursor.style.backgroundColor = "grey";
+// });
 
-  function selectedTool(tool, state) {
-    if(state === true) {
-      tool.style.border = "none";
-      tool.style.opacity = "100%";
-      tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
-    }
+//mouse moves and not clicked --> grey outline
+//mouse moves and clicked and on canvas --> smaller, grey
+//
+//
+// document.addEventListener('click', () => {
+//     cursor.style.backgroundColor = "grey";
+//     console.log('down');
+//
+//     // setTimeout(() => {
+//     //     cursor.classList.remove("expand");
+//     // }, 500)
+// });
 
-    else if(state === false) {
-      tool.style.border = "none";
-      tool.style.opacity = "50%";
-      tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
-    }
 
+// document.addEventListener('onmouseup', () => {
+//   cursor.style.backgroundColor = "none";
+//   cursor.style.border = "2px";
+// });
+
+// document.addEventListener('click', () e => {
+//     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;");
+// })
+
+// setTimeout(() => {
+//     cursor.classList.remove("expand");
+// }, 500)
+
+
+
+
+} // CANVAS FUNCTION END
+
+function selectedTool(tool, state) {
+  if (state === true) {
+    tool.style.border = "none";
+    tool.style.opacity = "100%";
+    tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
+  } else if (state === false) {
+    tool.style.border = "none";
+    tool.style.opacity = "50%";
+    tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
   }
+
+}
 
 
 
