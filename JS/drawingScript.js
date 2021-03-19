@@ -50,6 +50,8 @@ window.onload = function() {
     var mode = 'pencil';
     var radius = 1.5;
 
+    var points = [];
+
     selectedTool(pencil, true);
 
     var context = canvas.getContext('2d');
@@ -66,20 +68,25 @@ window.onload = function() {
     image.on('mousedown touchstart', function() {
       isPaint = true;
       lastPointerPosition = stage.getPointerPosition();
-
+      console.log('start');
+      points.push('start');
 
       // Stop drawing if cursor is leaves canvas to avoid jagged line
       // when cursor returns to canvas
-      window.addEventListener("mouseout", function() {
+      stage.addEventListener('mouseout', function() {
+        if(isPaint){
+          points.push('end');
+        }
         isPaint = false;
-
       });
     });
 
     // will it be better to listen move/end events on the window?
     stage.on('mouseup touchend', function() {
       isPaint = false;
-
+      // console.log('end');
+      // strokeType = 'end';
+      points.push('end');
     });
 
     // and core function - drawing
@@ -99,6 +106,7 @@ window.onload = function() {
 
       var pencil = document.getElementById("pencil");
       var eraser = document.getElementById("eraser");
+      var reverse = document.getElementById("reverse");
 
       pencil.addEventListener("click", () => {
         mode = 'pencil';
@@ -114,6 +122,12 @@ window.onload = function() {
         selectedTool(pencil, false);
       })
 
+      reverse.onclick = function() {
+        undoLast();
+        console.log(points);
+      };
+
+
       context.beginPath();
 
       var localPos = {
@@ -126,13 +140,21 @@ window.onload = function() {
         x: pos.x - image.x(),
         y: pos.y - image.y()
       };
+      // console.log("Pushed points X:" + pos.x + " and Y: " + pos.y);
+      console.log(points);
+      points.push({
+        x: pos.x,
+        y: pos.y,
+        size: context.lineWidth,
+        mode: mode,
+      });
+
       context.lineTo(localPos.x, localPos.y);
       context.closePath();
       context.stroke();
       lastPointerPosition = pos;
       layer.batchDraw();
     });
-
 
 
     const cursor = document.querySelector('.cursor');
@@ -149,16 +171,14 @@ window.onload = function() {
       cursor.style.backgroundColor = "grey";
 
       console.log('set grey');
+
       // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
     })
 
     //Increase and decrease pencil and eraser radius on scroll
-    document.addEventListener("wheel", function(e)
-    {
-      if (e.deltaY < 0)
-      {
-        if (context.lineWidth !== 0)
-        {
+    document.addEventListener("wheel", function(e) {
+      if (e.deltaY < 0) {
+        if (context.lineWidth !== 0) {
           context.lineWidth -= 0.2;
           cursor.style.width = context.lineWidth + 2.5;
           cursor.style.height = context.lineWidth + 2.5;
@@ -173,60 +193,80 @@ window.onload = function() {
     });
 
 
+    // Function pops last strokes from the array and then redraws the previous brush strokes
+    function undoLast() {
+      //popping everyting off the stack until the next
+      for (var i = points.length - 1; i >= 0 && points[i] !== 'start'; i--) {
+          points.pop();
+      }
+      //Pop start
+      if (points[points.length - 1] === 'start') {
+        points.pop();
+      }
 
-// context.onmousedown = function(){
-//   cursor.style.backgroundColor = "grey";
-//   console.log("EYO");
-// }
+      var currentRadius = context.lineWidth;
+      redrawAll();
+      context.lineWidth = currentRadius;
+    }
 
-// document.addEventListener('mousedown', () => {
-//   cursor.style.backgroundColor = "grey";
-// });
+    function redrawAll() {
 
-//mouse moves and not clicked --> grey outline
-//mouse moves and clicked and on canvas --> smaller, grey
-//
-//
-// document.addEventListener('click', () => {
-//     cursor.style.backgroundColor = "grey";
-//     console.log('down');
-//
-//     // setTimeout(() => {
-//     //     cursor.classList.remove("expand");
-//     // }, 500)
-// });
+      context.clearRect(0, 0, canvas.width, canvas.height);
 
-
-// document.addEventListener('onmouseup', () => {
-//   cursor.style.backgroundColor = "none";
-//   cursor.style.border = "2px";
-// });
-
-// document.addEventListener('click', () e => {
-//     cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;");
-// })
-
-// setTimeout(() => {
-//     cursor.classList.remove("expand");
-// }, 500)
+      if (points.length === 0) {
+        console.log('0 in array');
+        return;
+      }
 
 
+      for (var i = 0; i < points.length; i++) {
+
+        context.lineWidth = points[i].size;
+
+        if (points[i].mode === 'pencil') {
+          context.globalCompositeOperation = 'source-over';
+
+        } else if (points[i].mode === 'eraser') {
+          context.globalCompositeOperation = 'destination-out';
+        }
+
+        if (points[i] === 'start') {
+          context.beginPath();
+          context.moveTo(points[i].x, points[i].y);
+        }
+
+        context.lineTo(points[i].x, points[i].y);
+        context.closePath();
+        lastPointerPosition.x = points[i].x;
+        lastPointerPosition.y = points[i].y;
+        context.moveTo(lastPointerPosition.x, lastPointerPosition.y);
 
 
-} // CANVAS FUNCTION END
+        if (points[i] === 'end' || i == points.length - 1) {
+          context.stroke();
+          layer.batchDraw();
+        }
+      }
+      context.stroke();
+    }
 
-function selectedTool(tool, state) {
-  if (state === true) {
-    tool.style.border = "none";
-    tool.style.opacity = "100%";
-    tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
-  } else if (state === false) {
-    tool.style.border = "none";
-    tool.style.opacity = "50%";
-    tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
+
+
+
+  } // CANVAS FUNCTION END
+
+  function selectedTool(tool, state) {
+    if (state === true) {
+      tool.style.border = "none";
+      tool.style.opacity = "100%";
+      tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
+    } else if (state === false) {
+      tool.style.border = "none";
+      tool.style.opacity = "50%";
+      tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
+    }
+
   }
-
-}
 
 
 
