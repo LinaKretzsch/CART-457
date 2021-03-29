@@ -70,19 +70,19 @@ Project Agenda
 13.
 14.
 15.
-16. Goal: Implement server with NodeJS so multiple users can use application simultaneously
+16. Goal: Implement server with NodeJS so multiple users can use application simultaneously. Goal not met.
 17.
 18.
 19.
-20.
+20. Started implementing reverse button to reverse stroke or eraser
 21.
 22.
 23.
-24.
+24. Implemented reverse button which is working but will only refresh last stroke on canvas once user uses the pencil or eraser again
 25.
 26.
 27.
-28.
+28. Started implementing the database to retrieve images in the gallery
 29.
 30.
 31.
