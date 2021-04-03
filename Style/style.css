@@ -9,6 +9,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.logIn {
+  border-radius: 5px;
+  border-style: solid;
+  border-width: thin;
+  height: 200px;
+  width: 300px;
+  opacity: 80%;
+}
+
 .cursor {
     width: 5px;
     height: 5px;
@@ -81,8 +90,13 @@ p {
 
 h1 {
  text-align: center;
- padding: 50px 0% 50px 0%;
  -webkit-font-smoothing: antialiased;
+}
+
+
+
+.title {
+  padding: 10% 0 0 0;
 }
 
 .glow {
