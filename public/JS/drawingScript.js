@@ -4,11 +4,23 @@
 
 
 window.onload = function() {
+
+  const socket = io();
+
+  socket.on('message', message => {
+    console.log(message);
+  });
+
+
+
   console.log('Script loaded');
 
   let cvs1 = CustomCanvas('canvas1');
   let cvs2 = CustomCanvas('canvas2');
   let cvs3 = CustomCanvas('canvas3');
+
+  // array saving each brush stroke and then
+  let strokes = [];
 
   // Function creates a canvas with custom size to draw on
   function CustomCanvas(theCanvas) {
@@ -33,7 +45,7 @@ window.onload = function() {
 
 
 
-    // created canvas we can add to layer as "Konva.Image" element
+    // created canvas we can add to layer as 'Konva.Image' element
     var image = new Konva.Image({
       image: canvas,
       x: 0,
@@ -50,7 +62,6 @@ window.onload = function() {
     var mode = 'pencil';
     var radius = 1.5;
 
-    var points = [];
 
     selectedTool(pencil, true);
 
@@ -69,13 +80,13 @@ window.onload = function() {
       isPaint = true;
       lastPointerPosition = stage.getPointerPosition();
       console.log('start');
-      points.push('start');
+      strokes.push('start');
 
       // Stop drawing if cursor is leaves canvas to avoid jagged line
       // when cursor returns to canvas
       stage.addEventListener('mouseout', function() {
         if(isPaint){
-          points.push('end');
+          strokes.push('end');
         }
         isPaint = false;
       });
@@ -86,7 +97,7 @@ window.onload = function() {
       isPaint = false;
       // console.log('end');
       // strokeType = 'end';
-      points.push('end');
+      strokes.push('end');
     });
 
     // and core function - drawing
@@ -104,27 +115,41 @@ window.onload = function() {
         context.globalCompositeOperation = 'destination-out';
       }
 
-      var pencil = document.getElementById("pencil");
-      var eraser = document.getElementById("eraser");
-      var reverse = document.getElementById("reverse");
+      var pencil = document.getElementById('pencil');
+      var eraser = document.getElementById('eraser');
+      var reverse = document.getElementById('reverse');
+      var submit = document.getElementById('submit');
 
-      pencil.addEventListener("click", () => {
+      pencil.addEventListener('click', () => {
         mode = 'pencil';
         cursor.style.borderRadius = '50%';
         selectedTool(pencil, true);
         selectedTool(eraser, false);
       })
 
-      eraser.addEventListener("click", () => {
+      eraser.addEventListener('click', () => {
         mode = 'eraser';
         cursor.style.borderRadius = '10%';
         selectedTool(eraser, true);
         selectedTool(pencil, false);
       })
 
-      reverse.onclick = function() {
+      reverse.onclick = () => {
         undoLast();
-        console.log(points);
+        console.log(strokes);
+      };
+
+      // On submit, current point[] array is sent to the server
+      submit.onclick = (e) => {
+        e.preventDefault(); //Will prevent default behaviour of automatically submitting to file
+
+        let strokesArray = strokes;
+        console.log('clicked submit');
+        console.log(strokesArray);
+
+        // Emit brush strokes arrray to the server
+        socket.emit('strokesArray', strokesArray);
+
       };
 
 
@@ -140,9 +165,9 @@ window.onload = function() {
         x: pos.x - image.x(),
         y: pos.y - image.y()
       };
-      // console.log("Pushed points X:" + pos.x + " and Y: " + pos.y);
-      console.log(points);
-      points.push({
+      // console.log('Pushed strokes X:' + pos.x + ' and Y: ' + pos.y);
+      // console.log(strokes);
+      strokes.push({
         x: pos.x,
         y: pos.y,
         size: context.lineWidth,
@@ -160,23 +185,23 @@ window.onload = function() {
     const cursor = document.querySelector('.cursor');
 
     window.addEventListener('mousemove', e => {
-      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
-      cursor.style.top = (e.pageY - context.lineWidth - 1) + "px";
-      cursor.style.left = (e.pageX - context.lineWidth - 1) + "px";
-      cursor.style.backgroundColor = "none";
-      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+      // cursor.setAttribute('style', 'top: '+(e.pageY - 5)+'px; left: '+(e.pageX - 5)+'px;')
+      cursor.style.top = (e.pageY - context.lineWidth - 1) + 'px';
+      cursor.style.left = (e.pageX - context.lineWidth - 1) + 'px';
+      cursor.style.backgroundColor = 'none';
+      // cursor.setAttribute('style', 'top: '+(e.pageY - 5)+'px; left: '+(e.pageX - 5)+'px;')
     })
 
     window.addEventListener('mouseup touchend', e => {
-      cursor.style.backgroundColor = "grey";
+      cursor.style.backgroundColor = 'grey';
 
       console.log('set grey');
 
-      // cursor.setAttribute("style", "top: "+(e.pageY - 5)+"px; left: "+(e.pageX - 5)+"px;")
+      // cursor.setAttribute('style', 'top: '+(e.pageY - 5)+'px; left: '+(e.pageX - 5)+'px;')
     })
 
     //Increase and decrease pencil and eraser radius on scroll
-    document.addEventListener("wheel", function(e) {
+    document.addEventListener('wheel', function(e) {
       if (e.deltaY < 0) {
         if (context.lineWidth !== 0) {
           context.lineWidth -= 0.2;
@@ -196,12 +221,12 @@ window.onload = function() {
     // Function pops last strokes from the array and then redraws the previous brush strokes
     function undoLast() {
       //popping everyting off the stack until the next
-      for (var i = points.length - 1; i >= 0 && points[i] !== 'start'; i--) {
-          points.pop();
+      for (var i = strokes.length - 1; i >= 0 && strokes[i] !== 'start'; i--) {
+          strokes.pop();
       }
       //Pop start
-      if (points[points.length - 1] === 'start') {
-        points.pop();
+      if (strokes[strokes.length - 1] === 'start') {
+        strokes.pop();
       }
 
       var currentRadius = context.lineWidth;
@@ -213,36 +238,36 @@ window.onload = function() {
 
       context.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (points.length === 0) {
+      if (strokes.length === 0) {
         console.log('0 in array');
         return;
       }
 
 
-      for (var i = 0; i < points.length; i++) {
+      for (var i = 0; i < strokes.length; i++) {
 
-        context.lineWidth = points[i].size;
+        context.lineWidth = strokes[i].size;
 
-        if (points[i].mode === 'pencil') {
+        if (strokes[i].mode === 'pencil') {
           context.globalCompositeOperation = 'source-over';
 
-        } else if (points[i].mode === 'eraser') {
+        } else if (strokes[i].mode === 'eraser') {
           context.globalCompositeOperation = 'destination-out';
         }
 
-        if (points[i] === 'start') {
+        if (strokes[i] === 'start') {
           context.beginPath();
-          context.moveTo(points[i].x, points[i].y);
+          context.moveTo(strokes[i].x, strokes[i].y);
         }
 
-        context.lineTo(points[i].x, points[i].y);
+        context.lineTo(strokes[i].x, strokes[i].y);
         context.closePath();
-        lastPointerPosition.x = points[i].x;
-        lastPointerPosition.y = points[i].y;
+        lastPointerPosition.x = strokes[i].x;
+        lastPointerPosition.y = strokes[i].y;
         context.moveTo(lastPointerPosition.x, lastPointerPosition.y);
 
 
-        if (points[i] === 'end' || i == points.length - 1) {
+        if (strokes[i] === 'end' || i == strokes.length - 1) {
           context.stroke();
           layer.batchDraw();
         }
@@ -257,13 +282,13 @@ window.onload = function() {
 
   function selectedTool(tool, state) {
     if (state === true) {
-      tool.style.border = "none";
-      tool.style.opacity = "100%";
-      tool.style.filter = "drop-shadow(0px 0px 5px #b0f1ff)";
+      tool.style.border = 'none';
+      tool.style.opacity = '100%';
+      tool.style.filter = 'drop-shadow(0px 0px 5px #b0f1ff)';
     } else if (state === false) {
-      tool.style.border = "none";
-      tool.style.opacity = "50%";
-      tool.style.filter = "sepia(1.0) invert(.5) brightness(1.5)";
+      tool.style.border = 'none';
+      tool.style.opacity = '50%';
+      tool.style.filter = 'sepia(1.0) invert(.5) brightness(1.5)';
     }
 
   }

@@ -145,11 +145,11 @@ h1 {
 
 
 #canvas1, #canvas3 {
-  background-image: url("/Style/ImgFiles/cnvs1and3.png");
+  background-image: url("/css/ImgFiles/cnvs1and3.png");
 }
 
 #canvas2 {
-  background-image: url("/Style/ImgFiles/cnvs2.png");
+  background-image: url("/css/ImgFiles/cnvs2.png");
 }
 
 #canvas1, #canvas2, #canvas3 {
@@ -236,15 +236,15 @@ outline: none;
 }
 
 button.pencil {
-  background-image: url("/Style/ImgFiles/pencilIcon1.png");
+  background-image: url("/css/ImgFiles/pencilIcon1.png");
 }
 
 button.eraser {
-  background-image: url("/Style/ImgFiles/eraserIcon1.png");
+  background-image: url("/css/ImgFiles/eraserIcon1.png");
 }
 
 button.reverse {
-  background-image: url("/Style/ImgFiles/reverseIcon.png");
+  background-image: url("/css/ImgFiles/reverseIcon.png");
 }
 
 button.submit {
