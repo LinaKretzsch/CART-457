@@ -6,18 +6,81 @@
 window.onload = function() {
 
   const socket = io();
+  let socketId =-1;//-1 is not valid id, good way to check if id is valid
+
 
   socket.on('message', message => {
     console.log(message);
   });
 
+  socket.on('connect', function(data) {
+       console.log("connected");
+       // put code here that should only execute once the client is connected
+       socket.emit('join', 'msg:: client joined');
+       // handler for receiving client id
 
+       socket.on("joinedClientId", function(data){
+         socketId = data;
+         console.log("myId "+socketId);
+
+         // //Show canvas 1, 2 or 3 to user 1, 2 or 3
+          visibleToUser(socketId);
+       });
+   });//clientSocket END
 
   console.log('Script loaded');
 
-  let cvs1 = CustomCanvas('canvas1');
-  let cvs2 = CustomCanvas('canvas2');
-  let cvs3 = CustomCanvas('canvas3');
+
+  let canvas1Div = document.getElementById('canvas1Wrapper');
+  let canvas2Div = document.getElementById('canvas2Wrapper');
+  let canvas3Div = document.getElementById('canvas3Wrapper');
+
+
+
+
+  //depending on user, show either cvs 1, 2 or three and inialize it that way
+  function visibleToUser(sID){
+    // If first user to join session make first canvas visible
+    if(sID%3 === 1){
+      let cvs1 = new CustomCanvas('canvas1');
+      canvas1Div.style.visibility = 'visible';
+
+      canvas2Div.style.visibility = 'visible';
+      canvas2Div.style.opacity = '0.5';
+
+      canvas3Div.style.visibility = 'visible';
+      canvas3Div.style.opacity = '0.5';
+
+    }
+    if(sID%3 === 2){
+      let cvs2 = new CustomCanvas('canvas2');
+      canvas1Div.style.visibility = 'visible';
+      canvas1Div.style.opacity = '0.5';
+
+      canvas2Div.style.visibility = 'visible';
+
+      canvas3Div.style.visibility = 'visible';
+      canvas3Div.style.opacity = '0.5';
+
+    }
+    if(sID%3 === 0){
+      let cvs3 = new CustomCanvas('canvas3');
+
+      canvas1Div.style.visibility = 'visible';
+      canvas1Div.style.opacity = '0.5';
+
+      canvas2Div.style.visibility = 'visible';
+      canvas2Div.style.opacity = '0.5';
+
+      canvas3Div.style.visibility = 'visible';
+
+
+    }
+  }
+
+
+
+
 
   // array saving each brush stroke and then
   let strokes = [];
@@ -276,7 +339,7 @@ window.onload = function() {
     }
 
 
-
+    return canvas;
 
   } // CANVAS FUNCTION END
 
@@ -292,7 +355,6 @@ window.onload = function() {
     }
 
   }
-
 
 
 }

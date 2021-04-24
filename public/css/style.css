@@ -144,21 +144,21 @@ h1 {
 }
 
 
-#canvas1, #canvas3 {
+div#canvas1Wrapper, div#canvas3Wrapper {
   background-image: url("/css/ImgFiles/cnvs1and3.png");
 }
 
-#canvas2 {
+div#canvas2Wrapper {
   background-image: url("/css/ImgFiles/cnvs2.png");
 }
 
-#canvas1, #canvas2, #canvas3 {
+div#canvas1Wrapper, div#canvas2Wrapper, div#canvas3Wrapper {
   display: flex;
   align-self: center;
   background-repeat: round;
-  flex-basis: 25%;
+  /* flex-basis: 30%; */
   width: 500px;
-  height: auto;
+  height: 265px;
 }
 
 
