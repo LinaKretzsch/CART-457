@@ -34,7 +34,7 @@ window.onload = function() {
   let canvas1Div = document.getElementById('canvas1Wrapper');
   let canvas2Div = document.getElementById('canvas2Wrapper');
   let canvas3Div = document.getElementById('canvas3Wrapper');
-
+  let tools = document.getElementById('tools');
 
 
 
@@ -54,6 +54,8 @@ window.onload = function() {
     }
     if(sID%3 === 2){
       let cvs2 = new CustomCanvas('canvas2');
+      tools.style.transform = 'translateY(256px)'
+
       canvas1Div.style.visibility = 'visible';
       canvas1Div.style.opacity = '0.5';
 
@@ -65,6 +67,8 @@ window.onload = function() {
     }
     if(sID%3 === 0){
       let cvs3 = new CustomCanvas('canvas3');
+      tools.style.transform = 'translateY(512px)'
+
 
       canvas1Div.style.visibility = 'visible';
       canvas1Div.style.opacity = '0.5';
