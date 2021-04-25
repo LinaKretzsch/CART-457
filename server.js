@@ -1,3 +1,5 @@
+// NPM run dev --> To run dev script
+
 // Import node modules
 const path = require('path');
 const http = require('http');
@@ -42,14 +44,18 @@ io.on('connection', socket => {
     console.log('new user ' + count + ' has joined.')
   })
 
-  // Listen for strokesArray
-  socket.on('strokesArray', (strokesArray) => {
-    console.log(strokesArray);
-    pushStrokesArray(strokesArray);
+  // Listen for strokesArray and socketId of user sending the strokes
+  socket.on('strokesArray', (strokesArray, userId) => {
+
+
+    pushStrokesArray(strokesArray, userId);
+
+
+    // console.log(strokesArray);
+    // console.log('Current user ' + userId);
   });
 
   //To emit back to the server for everyone to see: io.emit('message', msg) --> Will use this to send fininshed drawing to the database?
-
 
   // Runs when client disconnects --> needs to be inside connection
   socket.on('disconnect', () => {
@@ -58,22 +64,39 @@ io.on('connection', socket => {
 });
 
 // Adds each strokes array to the corresponding array, either mid/center or bottom strokes
-function pushStrokesArray(strokesArray){
-  //if (socketId%3 === 0){
-  // topStrokes.push({
-  //  sessionId: socketId,
-  // data[]: strokesArray
-//})
-//}
-// }
-
+function pushStrokesArray(strokesArray, socketId){
+  if (socketId%3 === 1){
+    topStrokes.push({
+      sessionId: socketId,
+      data: strokesArray
+    })
+  }
+  else if (socketId%3 === 2){
+    midStrokes.push({
+      sessionId: socketId,
+      data: strokesArray
+    })
+  }
+  else if (socketId%3 === 0){
+    bottomStrokes.push({
+      sessionId: socketId,
+      data: strokesArray
+    })
+  }
+  else {
+    console.log('ID invalid, strokes could not be pushed back in array.');
+  }
+  combineDrawing();
 }
+
+
+
 
 // Verify if top/mid/bottom stroke arrays hold at least one stroke array each to combine drawing
 // Combines each 1st slots from top/mid/bottom stroke arrays
 function combineDrawing(){
   if(topStrokes.length > 0 && midStrokes.length > 0 && bottomStrokes.length > 0){
-
+    console.log('Yihaa we got one');
   }
 }
 

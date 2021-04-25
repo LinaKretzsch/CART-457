@@ -215,8 +215,7 @@ window.onload = function() {
         console.log(strokesArray);
 
         // Emit brush strokes arrray to the server
-        socket.emit('strokesArray', strokesArray);
-
+        socket.emit('strokesArray', strokesArray, socketId);
       };
 
 
