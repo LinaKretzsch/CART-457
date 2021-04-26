@@ -210,12 +210,16 @@ window.onload = function() {
       submit.onclick = (e) => {
         e.preventDefault(); //Will prevent default behaviour of automatically submitting to file
 
+        let theContext = context;
         let strokesArray = strokes;
         console.log('clicked submit');
-        console.log(strokesArray);
+
+        const dataURI = canvas.toDataURL();
+
+        console.log(dataURI);
 
         // Emit brush strokes arrray to the server
-        socket.emit('strokesArray', strokesArray, socketId);
+        socket.emit('strokesAndId', dataURI, socketId);
       };
 
 
@@ -338,7 +342,7 @@ window.onload = function() {
           layer.batchDraw();
         }
       }
-      context.stroke();
+      // context.stroke();
     }
 
 
