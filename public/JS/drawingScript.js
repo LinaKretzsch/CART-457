@@ -214,12 +214,19 @@ window.onload = function() {
         let strokesArray = strokes;
         console.log('clicked submit');
 
-        const dataURI = canvas.toDataURL();
+        const dataURL = canvas.toDataURL();
 
-        console.log(dataURI);
+        let base64Image = dataURL.split(';base64,').pop();
+
+
+        // const canvasImg = fs.writeFile('test1.png', base64Image, {encoding: 'base64'}, function(err) {
+        //     console.log('File created');
+          // });
+
+        // console.log(dataURI);
 
         // Emit brush strokes arrray to the server
-        socket.emit('strokesAndId', dataURI, socketId);
+        socket.emit('urlAndId', base64Image, socketId);
       };
 
 
@@ -342,6 +349,7 @@ window.onload = function() {
           layer.batchDraw();
         }
       }
+      return;
       // context.stroke();
     }
 
@@ -362,6 +370,8 @@ window.onload = function() {
     }
 
   }
+
+
 
 
 }
