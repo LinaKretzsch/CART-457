@@ -11,14 +11,9 @@ const image = require('image-js');
 // File stream to decode base64
 const fs = require('fs');
 
-
 // Module to decode base64 image URIs
 const {base64, decode} = require('node-base64-image');
 // import {encode, decode} from 'node-base64-image';
-
-
-// const loadImage = require('canvas');
-// const konva = require('public/JS/drawingScript.js');
 
 
 // Assign variables to node modules
@@ -32,7 +27,9 @@ const midImage = [];
 const bottomImage = [];
 let count = 0;
 
-
+const imgPathSep = 'public/images/seperateImg/';
+const imagPathComb = 'public/images/combinedImg/';
+let combinedImgCount = 0;
 
 
 
@@ -83,7 +80,7 @@ async function firstFunction(b64, uID){
   // var imageLoaded = false;
   // push URL back to first, second or third array depending on socket id
 
-  var imgName = 'image' + uID + '.png';
+  var imgName = imgPathSep + 'image' + uID + '.png';
   console.log(imgName);
 
   const canvasImg = await fs.writeFile(imgName, b64, {encoding: 'base64'}, function(err) {
@@ -130,31 +127,71 @@ async function secondFunction() {
    if(topImage.length>0 && midImage.length > 0 && bottomImage.length > 0){
      console.log('One entry each');
 
-     const canvas = createCanvas(500, 768);
+     // Copy paths over so the array space can be freed avoiding duplicate calls of the same function
+     const image1Path = topImage[0];
+     const image2Path = midImage[0];
+     const image3Path = bottomImage[0];
+
+     // Remove image file reference from arrays
+     topImage.shift();
+     midImage.shift();
+     bottomImage.shift();
+
+     // Creating canvas with canvas module, setting dimensions and loading image to set as background
+     const canvas = createCanvas(615, 843);
      const context = canvas.getContext('2d');
+     const backgroundImg = await loadImage('public/css/ImgFiles/combinedImageCanvasBg.png');
+     loadImage(backgroundImg).catch((err) => console.log(err));
+     context.drawImage(backgroundImg, 0, 0, 615, 843);
 
-     // imageName = topStrokes[0];
 
-     const image1 = await loadImage(topImage[0]);
-     const image2 = await loadImage(midImage[0]);
-     const image3 = await loadImage(bottomImage[0]);
+     const image1 = await loadImage(image1Path);
+     loadImage(image1).catch((err) => console.log(err));
+
+     const image2 = await loadImage(image2Path);
+     loadImage(image2).catch((err) => console.log(err));
+
+     const image3 = await loadImage(image3Path);
+     loadImage(image3).catch((err) => console.log(err));
+
 
      // if(image !== 'undefined'){
-       context.drawImage(image1, 0, 0, 500, 256);
-       context.drawImage(image2, 0, 256, 500, 256);
-       context.drawImage(image3, 0, 512, 500, 256);
+       context.drawImage(image1, 57.5, 0, 500, 281);
+       context.drawImage(image2, 57.5, 281, 500, 281);
+       context.drawImage(image3, 57.5, 562, 500, 281);
        const buffer = canvas.toBuffer('image/png');
-       fs.writeFileSync('./imageCompleteTest4.png', buffer);
+       const imageCombinedPath = imagPathComb + 'combinedImg' + combinedImgCount + '.png';
+       fs.writeFileSync(imageCombinedPath, buffer);
        console.log('Final image');
+       combinedImgCount++;
      // }
 
 
-     loadImage(image).catch((err) => console.log(err));
 
-     
+     // Delete seperate image files from Folder
+     fs.unlinkSync(image1Path, function(err) {
+       if (err) {
+         throw err
+       } else {
+         console.log("Another error occured deleting image1.")
+       }
+     })
+     fs.unlinkSync(image2Path, function(err) {
+       if (err) {
+         throw err
+       } else {
+         console.log("Another error occured deleting image2.")
+       }
+     })
+     fs.unlinkSync(image3Path, function(err) {
+       if (err) {
+         throw err
+       } else {
+         console.log("Another error occured deleting image3.")
+       }
+     })
 
-
-   }
+   } // end if checking if image url is in array
 
 }
 

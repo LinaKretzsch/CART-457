@@ -93,7 +93,7 @@ window.onload = function() {
   function CustomCanvas(theCanvas) {
 
     var width = 500; //resize here for format
-    var height = 256 - 25; //dont touch minus 25
+    var height = 281 - 25; //dont touch minus 25
 
     // first we need Konva core things: stage and layer
     var stage = new Konva.Stage({
@@ -138,6 +138,7 @@ window.onload = function() {
     context.strokeStyle = color;
     context.lineJoin = 'round';
     context.lineWidth = radius;
+
 
 
     // now we need to bind some events

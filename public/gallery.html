@@ -3,30 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="Style/style.css">
-  <link rel="stylesheet" href="Style/gallery.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Gallery</title>
 
 </head>
 
-<body>
+<body id="galleryBody">
+
 
   <h1 class="glow">Gallery</h1>
-  <div class= "galleryContainer">
-    <img src="/Style/ImgFiles/SampleImage1.jpg" class="image glow">
-    <img src="/Style/ImgFiles/SampleImage2.jpg" class="image glow">
-    <img src="/Style/ImgFiles/SampleImage3.jpg" class="image ">
-    <img src="/Style/ImgFiles/SampleImage4.jpg" class="image ">
-    <img src="/Style/ImgFiles/SampleImage6.png" class="image ">
-    <img src="/Style/ImgFiles/SampleImage7.jpg" class="image ">
-    <img src="/Style/ImgFiles/SampleImage8.jpg" class="image ">
-
-
+  <div id="galleryWrapper">
+    <div class="galleryContainer">
+    </div>
+    <div class="singleImageContainer">
+    </div>
+    <a id="backLink" href="index.html">Back</a>
+    <a id="close" href="gallery.html">Close</a>
   </div>
-
-
-<a href="index.html">Back</a>
-
-    <script src="JS/gallery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="JS/gallery.js"></script>
 
 
 </body>
