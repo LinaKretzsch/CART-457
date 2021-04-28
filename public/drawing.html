@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <link rel='stylesheet' href='css/style.css'>
+  <title>SketchQuisite</title>
+</head>
+
+<body>
+  <div class='cursor'></div>
+  <h1 class='glow'>SketchQuisite</h1>
+  <div class='OuterFlex'>
+    <div id='infoDiv'>
+      <h2 class='glow' id="infoHeader">INFO</h2>
+      <p id='infoText1'>
+        Hey you! You will be drawing the top part of the sketch. <br><br>
+        You can change the tool by clicking on it, adjust the
+        radius by using the mouse wheel and revert your last line by clicking the arrow. <br><br>
+        Once done, hit the submit button to send in your drawing. Go check
+        it out in the gallery.
+      </p>
+      <p id='infoText2'>
+        Hey you! You will be drawing the center part of the sketch. <br><br>
+        You can change the tool by clicking on it, adjust the
+        radius by using the mouse wheel and revert your last line by clicking the arrow. <br><br>
+        Once done, hit the submit button to send in your drawing. Go check
+        it out in the gallery.
+      </p>
+      <p id='infoText0'>
+      Hey you! You will be drawing the bottom part of the sketch. <br><br>
+      You can change the tool by clicking on it, adjust the
+      radius by using the mouse wheel and revert your last line by clicking the arrow. <br><br>
+      Once done, hit the submit button to send in your drawing. Go check
+      it out in the gallery.
+      </p>
+    </div>
+
+    <div class='drawingDiv'>
+      <!-- Canvas 1 div containing tools and canvas -->
+      <div id='canvas1Wrapper'>
+        <div id="alert1" class="glow"><span>Are you sure you are done?</span>
+          <button id="yesButton1" value='Yes'>Yes</button>
+          <button id="noButton1" value='No'>No</button>
+        </div>
+        <div id="canvas1"></div>
+      </div>
+
+
+
+      <!-- Canvas 2 div containing tools and canvas -->
+      <div id='canvas2Wrapper'>
+        <div id="alert2" class="glow"><span>Are you sure you are done?</span>
+          <button id="yesButton2" value='Yes'>Yes</button>
+          <button id="noButton2" value='No'>No</button>
+        </div>
+        <div id="canvas2"></div>
+      </div>
+
+      <!-- Canvas 3 div containing tools and canvas -->
+      <div id='canvas3Wrapper'>
+        <div id="alert0" class="glow"><span>Are you sure you are done?</span>
+          <button id="yesButton0" value='Yes'>Yes</button>
+          <button id="noButton0" value='No'>No</button>
+        </div>
+        <div id="canvas3"></div>
+      </div>
+
+    </div>
+
+
+
+    <div class='toolDiv'>
+    <div id='tools'>
+      <button value='pencil' class='pencil' id='pencil'></button>
+      <button value='eraser' class='eraser' id='eraser'></button>
+      <button value='reverse' class='reverse' id='reverse'></button>
+      <button value='submit' class='submit glow' id='submit'>Submit</button>
+    </div>
+    </div>
+  </div>
+
+
+
+  <script src='/socket.io/socket.io.js'></script>
+  <script src='https://unpkg.com/konva@4.0.15/konva.min.js'></script>
+  <script src='JS/drawingScript.js'></script>
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+</body>
+
+</html>
