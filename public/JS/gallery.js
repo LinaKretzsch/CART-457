@@ -21,14 +21,14 @@ let imageCount = 0;
       img = new Image();
       img.onload = fExists;
       img.onerror = fDoesntExist;
-      img.src = 'images/combinedImg/combinedImg' + imageCount + '.png';
+      img.src = '/images/combinedImg/combinedImg' + imageCount + '.png';
     }
 
   }
 
   function fExists() {
     imgArray.push(img);
-    $($('<img>', {id: 'galleryImg', class:'image' + imageCount, src: img.src})).appendTo('.galleryContainer').show('slow');
+    $($('<img>', {id: 'galleryImg', class:'image' + imageCount, src: img.src})).appendTo('.galleryContainer');
 
     $('.image'+ imageCount).on('click', function () {
       $('#close').fadeIn(400);
