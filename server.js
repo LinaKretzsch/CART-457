@@ -99,23 +99,9 @@ async function firstFunction(b64, uID){
         console.log('Invalid socket ID.');
       }
 
-      // topImage.push('imageTest.png');
       console.log('pushed image into array');
-
-      // if(canvasImg !== 'undefinded'){
-      //   imageLoaded = true;
-      //   secondFunction();
-      // }
-      //
-      // else {
-      //   console.log('canvas is empty');
-      // }
-
       secondFunction();
     });
-
-
-
 
 }
 
@@ -154,8 +140,6 @@ async function secondFunction() {
      const image3 = await loadImage(image3Path);
      loadImage(image3).catch((err) => console.log(err));
 
-
-     // if(image !== 'undefined'){
        context.drawImage(image1, 57.5, 0, 500, 281);
        context.drawImage(image2, 57.5, 281, 500, 281);
        context.drawImage(image3, 57.5, 562, 500, 281);
@@ -164,7 +148,6 @@ async function secondFunction() {
        fs.writeFileSync(imageCombinedPath, buffer);
        console.log('Final image');
        combinedImgCount++;
-     // }
 
 
 
@@ -195,159 +178,6 @@ async function secondFunction() {
 
 }
 
-
-// Adds each strokes array to the corresponding array, either mid/center or bottom strokes
-// function pushStrokesArray(base64, combineDrawing){
-//
-//   let base64Image = base64.split(';base64,').pop();
-//
-//   const canvasImg = fs.writeFile('image.png', base64Image, {encoding: 'base64'}, function(err) {
-//       console.log('File created');
-//     });
-
-  // topStrokes.push(base64Image);
-
-  // combineDrawing();
-
-  // if (socketId%3 === 1){
-  //   topStrokes.push({
-  //     sessionId: socketId,
-  //     data: strokes
-  //   })
-  //   console.log(topStrokes[0]);
-  // }
-  // else if (socketId%3 === 2){
-  //   midStrokes.push({
-  //     sessionId: socketId,
-  //     data: strokes
-  //   })
-  //   console.log(midStrokes[0]);
-  // }
-  // else if (socketId%3 === 0){
-  //   bottomStrokes.push({
-  //     sessionId: socketId,
-  //     data: strokes
-  //   })
-  //   console.log(bottomStrokes[0]);
-  // }
-  // else {
-  //   console.log('ID invalid, strokes could not be pushed back in array.');
-  // }
-  // combineDrawing(topStrokes[0], midStrokes[0], bottomStrokes[0]);
-// }
-
-
-// Verify if top/mid/bottom stroke arrays hold at least one stroke array each to combine drawing
-// Combines each 1st slots from top/mid/bottom stroke arrays
-// function combineDrawing(){
-//   // if(topStrokes.length > 0 && midStrokes.length > 0 && bottomStrokes.length > 0){
-//
-//
-//   if(topStrokes.length>0){
-//     console.log('One entry each');
-//
-//     const canvas = createCanvas(500, 768);
-//     const context = canvas.getContext('2d');
-//
-//
-//   /// code found online
-//
-//
-//     // loadImage('TryingOut.png').then(image => {
-//     //   // context.drawImage(image, 50, 0, 70, 70);
-//     //   console.log('success');
-//     // })
-//
-//     const image = loadImage('TryingOut.png');
-//     context.drawImage(image, 0, 0, 500, 256);
-//     context.drawImage(image, 0, 256, 500, 256);
-//     context.drawImage(image, 0, 512, 500, 256);
-//
-//     loadImage('TryingOut.png').catch((err) => console.log(err));
-//
-//     const buffer = canvas.toBuffer('image/png');
-//     fs.writeFileSync('./imageComplete1.png', buffer);
-//     console.log('Final image');
-//
-//
-// }
-//
-//   // }
-// }
-
-// async function combineTest(){
-
-
-
-  /// code found online
-
-//   var ReadableData = require('stream').Readable;
-// const imageBufferData = Buffer.from(base64, 'base64');
-// var streamObj = new ReadableData();
-// streamObj.push(imageBufferData);
-// streamObj.push(null);
-// streamObj.pipe(fs.createWriteStream('testImage2.jpg'));
-
-  // let base64String = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgA';
-  // let base64Image = base64.split(';base64,').pop();
-  //
-  // const canvasImg = await fs.writeFile('image.png', base64Image, {encoding: 'base64'}, function(err) {
-  //     console.log('File created');
-  //   });
-
-  // combineTestSecond();
-
-//   const canvas = createCanvas(500, 768);
-//   const context = canvas.getContext('2d');
-//
-//
-// /// code found online
-//
-//
-//   loadImage('image.png').then((image) => {
-//     context.drawImage(image, 50, 0, 70, 70);
-//     console.log('success');
-//   })
-//
-//   loadImage('image.png').catch((err) => console.log(err));
-
-
-
-
-
-  // const buffer = canvas.toBuffer('image/png');
-  // fs.writeFileSync('./imageComplete.png', buffer);
-  // console.log('Final image');
-
-
-
-  // var example = imageUrl;
-  //
-  // decode(image, {
-  //   fname: 'example',
-  //   ext: 'png'
-  // });
-
-//   console.log('Canvas was created');
-// }
-
-// function combineTestSecond(){
-
-
-//   const canvas = createCanvas(500, 768);
-//   const context = canvas.getContext('2d');
-//
-// /// code found online
-//
-//
-//   loadImage('image.png').then((image) => {
-//     context.drawImage(image, 50, 0, 70, 70);
-//     console.log('success');
-//   })
-//
-//   loadImage('image.png').catch((err) => console.log(err))
-
-// }
 
 
 const PORT = 3000 || process.env.PORT;
