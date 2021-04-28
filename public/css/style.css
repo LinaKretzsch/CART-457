@@ -9,6 +9,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.indexHEader {
+  margin-top: 0;
+  margin-bottom: 0;
+
+}
+
 .cursor {
     width: 5px;
     height: 5px;
@@ -429,7 +435,7 @@ button#yesButton0, button#noButton0{
   border-style: none;
 }
 
-button#yesButton1:hover, button#noButton:hover,
+button#yesButton1:hover, button#noButton1:hover,
 button#yesButton2:hover, button#noButton2:hover,
 button#yesButton0:hover, button#noButton0:hover{
   box-shadow: 0 0 10px #b0f1ff;
