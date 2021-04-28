@@ -152,27 +152,27 @@ async function secondFunction() {
 
 
      // Delete seperate image files from Folder
-     fs.unlinkSync(image1Path, function(err) {
-       if (err) {
-         throw err
-       } else {
-         console.log("Another error occured deleting image1.")
-       }
-     })
-     fs.unlinkSync(image2Path, function(err) {
-       if (err) {
-         throw err
-       } else {
-         console.log("Another error occured deleting image2.")
-       }
-     })
-     fs.unlinkSync(image3Path, function(err) {
-       if (err) {
-         throw err
-       } else {
-         console.log("Another error occured deleting image3.")
-       }
-     })
+     // fs.unlinkSync(image1Path, function(err) {
+     //   if (err) {
+     //     throw err
+     //   } else {
+     //     console.log("Another error occured deleting image1.")
+     //   }
+     // })
+     // fs.unlinkSync(image2Path, function(err) {
+     //   if (err) {
+     //     throw err
+     //   } else {
+     //     console.log("Another error occured deleting image2.")
+     //   }
+     // })
+     // fs.unlinkSync(image3Path, function(err) {
+     //   if (err) {
+     //     throw err
+     //   } else {
+     //     console.log("Another error occured deleting image3.")
+     //   }
+     // })
 
    } // end if checking if image url is in array
 
