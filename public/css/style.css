@@ -131,7 +131,7 @@ h1 {
   /* flex: 0 2 auto; */
   resize: none;
   -webkit-transform:translate3D(0 50 40);
-  padding-left: 600px;
+  margin-left: 600px;
   z-index: 1;
 }
 
@@ -206,6 +206,10 @@ a:hover, button.submit:hover {
   /* box-shadow: 0 0 1px #ffee10; */
 }
 
+button.pencil {
+  transform: translateY(-2px);
+}
+
 button.pencil, button.eraser, button.reverse {
   border: none;
   background-size: contain;
@@ -216,10 +220,17 @@ button.pencil, button.eraser, button.reverse {
   opacity: 50%;
   -webkit-filter: sepia(1.0) invert(.5) brightness(1.5);
   transition: 0.5s;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
-button.pencil:hover, button.eraser:hover{
+button.pencil:hover {
+  text-shadow: 0 0 20px #ffee10;
+  opacity: 100% !important;   /* adding important so this attribute wont be overwritten in JS */
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff) !important;
+  -webkit-transform:translate3d(5px,-2px,0);
+}
+
+button.eraser:hover{
   text-shadow: 0 0 20px #ffee10;
   opacity: 100% !important;   /* adding important so this attribute wont be overwritten in JS */
   -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff) !important;
@@ -267,7 +278,7 @@ button.submit {
   border-width: thin;
   width: 70px;
   height: 30px;
-  margin-left: 32px;
+  margin-left: 39px;
   border-style: none;
   transition: 0.5s;
 }
@@ -378,4 +389,97 @@ button.submit {
 
 #close {
   display: none;
+}
+
+#alert1, #alert2, #alert0 {
+  z-index: 3 !important;
+  display: none;
+  color: #b0f1ff;
+  font-weight: bolder;
+  font-size: 120%;
+  padding: 2%;
+  height: 100px;
+  width: 250px;
+  position: absolute;
+  background-color: rgba(54, 54, 69, 1);
+  border: rgba(54, 54, 69, 0.2) solid;
+  align-self: center;
+  text-align: center;
+  margin-left: 25%;
+  border-radius: 10px;
+  padding-top: 5%;
+}
+
+button#yesButton1, button#noButton1,
+button#yesButton2, button#noButton2,
+button#yesButton0, button#noButton0{
+  padding: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 80%;
+  transition: .5s;
+  background-color: grey;
+  margin: 10% 5% 5% 5%;
+  background-color: grey;
+  color: none;
+  border-radius: 3px;
+  border-width: thin;
+  width: 70px;
+  height: 30px;
+  border-style: none;
+}
+
+button#yesButton1:hover, button#noButton:hover,
+button#yesButton2:hover, button#noButton2:hover,
+button#yesButton0:hover, button#noButton0:hover{
+  box-shadow: 0 0 10px #b0f1ff;
+  color: #fffde0;
+  text-shadow: 0 0 5px #ffee10;
+}
+
+#infoDiv {
+  border: solid medium rgba(176, 241, 255, 0.8);
+  border-radius: 50px;
+  box-shadow: 0 0 5px #b0f1ff;
+  background-color: none;
+  height: 248px;
+  width: 290px;
+  margin-right: 310px;
+  margin-top: 1px;
+  position: absolute;
+  align-self: flex-start;
+  display: block;
+  flex-wrap: wrap;
+  overflow: none;
+  cursor: none;
+  resize: none;
+  z-index: 1;
+  transition: 2s;
+}
+
+#infoDiv:hover {
+  /* text-shadow: 0 0 20px #ffee10; */
+  opacity: 100% !important;   /* adding important so this attribute wont be overwritten in JS */
+  -webkit-filter: drop-shadow(0px 0px 5px #b0f1ff) !important;
+  -webkit-transform:translate3d(-10px, 0,0);
+}
+
+#infoHeader {
+  font-size: 18px;
+  letter-spacing: 8px;
+  writing-mode: vertical-rl;
+  text-orientation: sideways-left;
+  transform: rotateX(180deg) rotateY(180deg);
+  margin: 78px 0 0 10px;
+  position: absolute;
+}
+
+#infoText1,  #infoText2, #infoText0{
+  display: none;
+  padding: 10px 80px 0 15px;
+  margin-top: none;
+  font-size: 14px;
+  text-align: justify;
+  color: rgba(176, 241, 255, 0.8);
+  font-weight: bolder;
 }

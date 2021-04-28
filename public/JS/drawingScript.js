@@ -35,7 +35,10 @@ window.onload = function() {
   let canvas2Div = document.getElementById('canvas2Wrapper');
   let canvas3Div = document.getElementById('canvas3Wrapper');
   let tools = document.getElementById('tools');
-
+  // let alert1 = document.getElementById('alert1');
+  // let alert2 = document.getElementById('alert2');
+  // let alert3 = document.getElementById('alert3');
+  let info = document.getElementById('infoDiv');
 
 
   //depending on user, show either cvs 1, 2 or three and inialize it that way
@@ -54,7 +57,8 @@ window.onload = function() {
     }
     if(sID%3 === 2){
       let cvs2 = new CustomCanvas('canvas2');
-      tools.style.transform = 'translateY(256px)'
+      tools.style.transform = 'translateY(256px)';
+      info.style.transform = 'translateY(256px)';
 
       canvas1Div.style.visibility = 'visible';
       canvas1Div.style.opacity = '0.5';
@@ -67,7 +71,9 @@ window.onload = function() {
     }
     if(sID%3 === 0){
       let cvs3 = new CustomCanvas('canvas3');
-      tools.style.transform = 'translateY(512px)'
+      tools.style.zIndex = '3';
+      tools.style.transform = 'translateY(512px)';
+      info.style.transform = 'translateY(512px)';
 
 
       canvas1Div.style.visibility = 'visible';
@@ -187,20 +193,21 @@ window.onload = function() {
       var eraser = document.getElementById('eraser');
       var reverse = document.getElementById('reverse');
       var submit = document.getElementById('submit');
+      var infoBox = document.getElementById('infoDiv');
 
       pencil.addEventListener('click', () => {
         mode = 'pencil';
         cursor.style.borderRadius = '50%';
         selectedTool(pencil, true);
         selectedTool(eraser, false);
-      })
+      });
 
       eraser.addEventListener('click', () => {
         mode = 'eraser';
         cursor.style.borderRadius = '10%';
         selectedTool(eraser, true);
         selectedTool(pencil, false);
-      })
+      });
 
       reverse.onclick = () => {
         undoLast();
@@ -209,27 +216,29 @@ window.onload = function() {
 
       // On submit, current point[] array is sent to the server
       submit.onclick = (e) => {
-        e.preventDefault(); //Will prevent default behaviour of automatically submitting to file
+        //Will prevent default behaviour of automatically submitting to file
+        e.preventDefault();
 
-        let theContext = context;
-        let strokesArray = strokes;
-        console.log('clicked submit');
+        $('#alert' + socketId%3).fadeIn(200);
 
-        const dataURL = canvas.toDataURL();
+        $('#yesButton' + socketId%3).click( () => {
+            let theContext = context;
+            let strokesArray = strokes;
+            console.log('clicked submit');
 
-        let base64Image = dataURL.split(';base64,').pop();
+            const dataURL = canvas.toDataURL();
 
-
-        // const canvasImg = fs.writeFile('test1.png', base64Image, {encoding: 'base64'}, function(err) {
-        //     console.log('File created');
-          // });
-
-        // console.log(dataURI);
-
-        // Emit brush strokes arrray to the server
-        socket.emit('urlAndId', base64Image, socketId);
+            let base64Image = dataURL.split(';base64,').pop();
+            socket.emit('urlAndId', base64Image, socketId);
+            window.location = 'index.html';
+        })
+          $('#noButton' + socketId%3).click( () => {
+            $('#alert' + socketId%3).fadeOut(200);
+          });
       };
 
+
+      // infoBox.onclick =
 
       context.beginPath();
 
@@ -372,7 +381,45 @@ window.onload = function() {
 
   }
 
+  $('#infoDiv').on('click', () => {
+    if(socketId%3 === 1){
+      if($('#infoText' + socketId%3).is(':hidden')){
+        $('#infoDiv').css({transform: 'translateX(-180px)'})
+        $('#infoHeader').fadeOut(200);
+        $('#infoText' + socketId%3).fadeIn(400);
+      }
+      else{
+        $('#infoDiv').css({transform: 'translateX(0px)'})
+        $('#infoHeader').fadeIn(400);
+        $('#infoText' + socketId%3).fadeOut(200);
+      }
+    }
+    if(socketId%3 === 2){
+      if($('#infoText' + socketId%3).is(':hidden')){
+        $('#infoDiv').css({transform: 'translateX(-180px) translateY(256px)'})
+        $('#infoHeader').fadeOut(200);
+        $('#infoText' + socketId%3).fadeIn(400);
+      }
+      else{
+        $('#infoDiv').css({transform: 'translateX(0) translateY(256px)'})
+        $('#infoHeader').fadeIn(400);
+        $('#infoText' + socketId%3).fadeOut(200);
+      }
+    }
+    if(socketId%3 === 0){
+      if($('#infoText' + socketId%3).is(':hidden')){
+        $('#infoDiv').css({transform: 'translateX(-180px) translateY(512px)'})
+        $('#infoHeader').fadeOut(200);
+        $('#infoText' + socketId%3).fadeIn(400);
+      }
+      else{
+        $('#infoDiv').css({transform: 'translateX(0px) translateY(512px)'})
+        $('#infoHeader').fadeIn(400);
+        $('#infoText' + socketId%3).fadeOut(200);
+      }
+    }
 
+  })
 
 
 }
