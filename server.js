@@ -27,8 +27,8 @@ const midImage = [];
 const bottomImage = [];
 let count = 0;
 
-const imgPathSep = 'public/images/seperateImg/';
-const imagPathComb = 'public/images/combinedImg/';
+const imgPathSep = 'public/seperateImg/';
+const imagPathComb = 'public/combinedImg/';
 let combinedImgCount = 0;
 
 

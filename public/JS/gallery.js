@@ -21,7 +21,7 @@ let imageCount = 0;
       img = new Image();
       img.onload = fExists;
       img.onerror = fDoesntExist;
-      img.src = '/images/combinedImg/combinedImg' + imageCount + '.png';
+      img.src = '/combinedImg/combinedImg' + imageCount + '.png';
     }
 
   }
