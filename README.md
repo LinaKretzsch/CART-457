@@ -4,3 +4,5 @@ SketchQuisite is a reworked project from the final project I created for CART 35
 wrote the initial code with a lot of help by my professor and was partially unable to achieve certain stylistic aspects due 
 to the lack of experience. The detailled process of this project can be found in the Process folder. 
 
+Application link: https://sketchquisite.herokuapp.com/
+
