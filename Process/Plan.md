@@ -10,8 +10,9 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 ### Technology used
 - HTML and CSS to basic website setup
 - JavaScript for interactivity of website such as drawing part. Will probably use an interactive canvas from a library
-- SQL for database which will hold username, password and drawings the user participated in as well as partial drawings which will be combined to a full drawing once each user is done
 - NodeJS for server interactions so that 3 users can use the application simultaneously
+- Express for server functionality to handle post and get requests
+- The website is hosted on heroku and the server currently resets every other hour
 
 ---
 ### Component Development
@@ -38,7 +39,16 @@ The application enables 3 users to draw a collaborative sketch together. Each us
 
 ---
 
-Issues Encountered:
-1. Currently canvas is larger than white div background. Will have to edit this
-2. Cursor is currently not showing the desired effect when pressed. I would the cursor radius to get smaller upon click
-3. Followed a tutorial in order to change application into single page application using node and express. Since this was all new to me I had difficulties to restore the previous state of my project and hence decided to revert the changes and move on due to a strict timeline. I might attempt to restructure the files once I have everything implemented by creating a new branch and safely try using express. I would have preferred to structure this application as a SPA to learn but since I would like to get this project completed I will move on for now.
+### Issues Encountered:
+1. The Cursor is currently not showing the desired effect when pressed. I would the cursor radius to get smaller upon click. Changing this property has been more complex since the cursor outline is drawn on each cursor movement. 
+2. I Followed a tutorial in order to change application into single page application using node and express. Since this was all new to me I had difficulties to restore the previous state of my project and hence decided to revert the changes and move on due to a strict timeline. I might attempt to restructure the files once I have everything implemented by creating a new branch and safely try using express. I would have preferred to structure this application as a SPA to learn but since I would like to get this project completed I will move on for now.
+3. Since I was unable to create new image files on the server I had to add empty image files and overwrite them when a user submits a finished drawing. This enabled me to show that the overall logic of the application is working, however drawings are only saved on the server until it reloads which happens about every hour.
+
+---
+
+### Future Development
+
+I would like to implement the following features in the future: 
+1. I would like to turn the applicaiton into a SPA and would like to use react to render the project
+2. A proper database needs to be established to hold the data of the finished drawings
+3. A login screen with username and password should be added so that every user can filter for images theyr participated in on the gallery page
